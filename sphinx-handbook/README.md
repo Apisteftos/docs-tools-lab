@@ -11,7 +11,7 @@ creates HTML, PDF, ePub, Qt Help and plain text.
 
 1. [Installation](#1-installation)
 2. [Build commands](#2-build-commands)
-3. [Folder layout](#3-folder-layout)
+3. [Chapter order](#3-chapter-order)
 4. [The complete conf.py](#4-the-complete-confpy)
 5. [conf.py explained](#5-confpy-explained)
 6. [Writing pages: MyST Markdown](#6-writing-pages-myst-markdown)
@@ -120,23 +120,9 @@ Delete old results with `rm -rf _build`.
 
 ---
 
-## 3. Folder layout
+## 3. Chapter order
 
-```
-01_sphinx_example/
-├── conf.py                  settings (Python file)
-├── requirements.txt
-├── index.md                 start page with the table of contents
-├── welcome.md
-├── working-together.md
-├── engineering.md
-├── releases-and-support.md
-├── onboarding.md
-└── images/
-    ├── logo-full.png        wide logo (HTML sidebar, PDF, ePub cover)
-    ├── logo.png             small square logo
-    └── process.png
-```
+All pages are Markdown files next to `conf.py`, and the pictures are in an `images/` folder.
 
 The order of the chapters is set by the `toctree` block in `index.md`:
 

@@ -172,25 +172,8 @@ markdown_extensions:
       custom_checkbox: true
 ```
 
-Folder layout expected by this file:
-
-```
-01_mkdocs_example/
-├── mkdocs.yml
-├── requirements.txt
-└── docs/
-    ├── index.md
-    ├── working-together.md
-    ├── engineering.md
-    ├── releases-and-support.md
-    ├── onboarding.md
-    └── images/
-        ├── logo.png         (small square logo for the header)
-        ├── logo-full.png    (wide logo used on the home page)
-        └── process.png
-```
-
-All pages and pictures live in `docs/`. Paths in `mkdocs.yml` are relative to `docs/`.
+All pages and pictures live in the `docs/` folder next to `mkdocs.yml`. Paths in `mkdocs.yml` are
+relative to `docs/`. The small square `logo.png` is used in the header, the wide `logo-full.png` on the home page.
 
 ---
 

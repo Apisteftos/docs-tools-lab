@@ -7,19 +7,21 @@ for all output formats.
 | Example | What it shows | Output |
 |---------|---------------|--------|
 | [`01_quarto_example`](01_quarto_example) | Company handbook with 5 chapters, notes, checklists and a logo in the page header | HTML website, PDF (A4), ePub, Word |
+| [`02_quarto_example`](02_quarto_example) | The same idea with **one** Markdown file and no chapters | HTML (single file), PDF (A4), ePub, Word |
 
 ## Contents
 
 1. [Installation](#1-installation)
 2. [Build commands](#2-build-commands)
-3. [Folder layout](#3-folder-layout)
+3. [Source files](#3-source-files)
 4. [The complete _quarto.yml](#4-the-complete-_quartoyml)
 5. [_quarto.yml explained](#5-_quartoyml-explained)
 6. [Writing pages](#6-writing-pages)
 7. [Customize](#7-customize)
 8. [Typst instead of LaTeX](#8-typst-instead-of-latex)
 9. [Troubleshooting](#9-troubleshooting)
-10. [Optional .gitignore](#10-optional-gitignore)
+10. [Example 02: a single file](#10-example-02-a-single-file)
+11. [Optional .gitignore](#11-optional-gitignore)
 
 > Run all commands **inside the example folder** (`cd 01_quarto_example`).
 
@@ -83,34 +85,21 @@ fonts must still be on the system (`fonts-dejavu`).
 
 Results in `_output/`:
 
-```
-_output/
-├── index.html, working-together.html, ...   website (open index.html)
-├── Company-Handbook.pdf
-├── Company-Handbook.epub
-└── Company-Handbook.docx
-```
+| File in `_output/` | Format |
+|--------------------|--------|
+| `index.html` and one `.html` file per chapter | Website (open `index.html`) |
+| `Company-Handbook.pdf` | PDF |
+| `Company-Handbook.epub` | ePub |
+| `Company-Handbook.docx` | Word |
 
 > In a test, a single-format render (`--to pdf`) replaced the other files in `_output/`.
 > Use plain `quarto render` when you want all formats together.
 
 ---
 
-## 3. Folder layout
+## 3. Source files
 
-```
-01_quarto_example/
-├── _quarto.yml                project and format settings
-├── index.md                   first chapter ("Welcome")
-├── working-together.md
-├── engineering.md
-├── releases-and-support.md
-├── onboarding.md
-└── images/
-    ├── logo-full.png          wide logo (sidebar, PDF header, ePub cover)
-    ├── logo.png               small square logo
-    └── process.png
-```
+All chapters are Markdown files next to `_quarto.yml`, and the pictures are in an `images/` folder.
 
 Quarto accepts plain `.md` files, as used here, and `.qmd` files (Quarto Markdown, which
 can also run code). The chapter order comes from the `chapters` list in `_quarto.yml`.
@@ -353,7 +342,81 @@ header settings (the logo header did not appear). That is why this example uses 
 
 ---
 
-## 10. Optional .gitignore
+## 10. Example 02: a single file
+
+Folder: `02_quarto_example`. It contains one `handbook.md`, an `images/` folder and a
+`_quarto.yml`. Use this when you do not need chapters, only the multi-format output.
+
+```bash
+cd 02_quarto_example
+quarto render handbook.md
+```
+
+The `_quarto.yml` of this example:
+
+```yaml
+project:
+  type: default
+  output-dir: _output
+
+lang: en
+date-format: "MMMM YYYY"
+
+title: "Company Handbook"
+subtitle: "How we work at Example Company"
+author: "Example Company GmbH"
+date: "November 2026"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    papersize: a4
+    geometry: [margin=2.5cm, top=3cm, headheight=1.3cm]
+    mainfont: "DejaVu Serif"
+    monofont: "DejaVu Sans Mono"
+    colorlinks: true
+    linestretch: 1.15
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    include-in-header:
+      text: |
+        \usepackage{scrlayer-scrpage}
+        \clearpairofpagestyles
+        \renewcommand*{\titlepagestyle}{scrheadings}
+        \pagestyle{scrheadings}
+        \ihead{\small\textcolor{gray}{Company Handbook}}
+        \ohead{\includegraphics[height=1.0cm]{images/logo.png}}
+        \cfoot{\small\pagemark}
+        \setkomafont{pageheadfoot}{\normalfont}
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    embed-resources: true
+  docx:
+    toc: true
+    number-sections: true
+  epub:
+    toc: true
+    number-sections: true
+    cover-image: images/logo.png
+```
+
+What is different from the book in example 01:
+
+| Difference | Reason |
+|------------|--------|
+| `type: default` instead of `type: book` | A book needs several chapters and an `index.md`. A single file is a normal document |
+| `title`, `author`, ... at the top level | There is no `book:` block, so the metadata stands directly in the file |
+| `number-sections` instead of Pandoc's `numbersections` | Quarto uses its own key names |
+| `\titlepagestyle` instead of `\chapterpagestyle` | The article class has a title page, but no chapter pages |
+| `embed-resources: true` | The HTML is one self-contained file |
+
+---
+
+## 11. Optional .gitignore
 
 ```gitignore
 # Generated output

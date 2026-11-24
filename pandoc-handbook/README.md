@@ -79,7 +79,7 @@ a code block, a quote, lists, a definition list and three pictures.
 ```yaml
 ---
 title: "Sample Project Handbook"
-author: "Kostas"
+author: "Example Author"
 date: "2026-11-24"
 lang: en
 ---
