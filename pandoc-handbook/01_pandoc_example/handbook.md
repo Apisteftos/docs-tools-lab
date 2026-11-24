@@ -1,6 +1,6 @@
 ---
 title: "Sample Project Handbook"
-author: "Kostas"
+author: "Example Author"
 date: "2026-11-24"
 lang: en
 ---
