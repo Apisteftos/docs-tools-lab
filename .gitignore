@@ -1,0 +1,43 @@
+# Generated output (can be rebuilt from the .md files)
+build/
+site/
+_build/
+_output/
+
+# Quarto cache
+.quarto/
+_freeze/
+*_files/
+
+# LaTeX leftovers from Pandoc/XeLaTeX
+*.aux
+*.log
+*.toc
+*.out
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Generated documents (Pandoc, Quarto, Sphinx)
+*.pdf
+*.epub
+*.docx
+*.html
+
+# Editor and OS files
+.vscode/
+.idea/
+.zettlr/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Python environments (Sphinx, MkDocs)
+.venv/
+venv/
+__pycache__/
+
+# Node (if you try Docusaurus or similar)
+node_modules/

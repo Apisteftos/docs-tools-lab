@@ -1,0 +1,51 @@
+site_name: Company Handbook
+site_description: How we work at Example Company
+site_author: Example Company GmbH
+copyright: Copyright &copy; 2026 Example Company GmbH
+
+theme:
+  name: material
+  language: en
+  logo: images/logo.png
+  favicon: images/logo.png
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Working together: working-together.md
+  - Engineering: engineering.md
+  - Releases and support: releases-and-support.md
+  - Onboarding: onboarding.md
+
+plugins:
+  - search
+  - print-site:
+      add_to_navigation: true
+      print_page_title: Company Handbook (print version)
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true

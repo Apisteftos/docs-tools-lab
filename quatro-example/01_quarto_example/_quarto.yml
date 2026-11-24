@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: _output
+
+lang: en
+date-format: "MMMM YYYY"
+
+book:
+  title: "Company Handbook"
+  subtitle: "How we work at Example Company"
+  author: "Example Company GmbH"
+  date: "November 2026"
+  search: true
+  sidebar:
+    logo: images/logo-full.png
+  chapters:
+    - index.md
+    - working-together.md
+    - engineering.md
+    - releases-and-support.md
+    - onboarding.md
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true
+  pdf:
+    documentclass: scrbook
+    pdf-engine: xelatex
+    papersize: a4
+    classoption: [oneside, openany]
+    geometry: [margin=2.5cm, top=3.2cm, headheight=1.6cm]
+    mainfont: "DejaVu Serif"
+    sansfont: "DejaVu Sans"
+    monofont: "DejaVu Sans Mono"
+    colorlinks: true
+    callout-icon: false
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    include-in-header:
+      text: |
+        \usepackage{scrlayer-scrpage}
+        \clearpairofpagestyles
+        \renewcommand*{\chapterpagestyle}{scrheadings}
+        \pagestyle{scrheadings}
+        \ohead{\includegraphics[height=1.0cm]{images/logo-full.png}}
+        \ihead{\small\textcolor{gray}{Company Handbook}}
+        \cfoot{\small\pagemark}
+        \setkomafont{pageheadfoot}{\normalfont}
+  epub:
+    cover-image: images/logo-full.png
+    toc: true
+  docx:
+    toc: true
+    number-sections: true
